@@ -1,0 +1,162 @@
+<!-- Nitin Dev, 11229841 -->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Snake Game</title>
+    <style>
+        canvas {
+            position: fixed;
+            background-color: lightgoldenrodyellow;
+        }
+
+        body {
+            background-color: lightcyan;
+        }
+
+        p {
+            font-weight: bolder;
+            font-size: 20px;
+            color: teal
+        }
+    </style>
+</head>
+
+<body onload=startGame()>
+    <canvas name=canvas width="666" height="396" style="border: solid 20px rgb(35, 35, 107)"> </canvas>
+    <script>
+        function startGame() {
+            myGameArea.start();
+        }
+        let myGameArea = {
+            canvas: document.createElement("canvas"),
+            start: function () {
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+            },
+            clear: function () {
+                clearInterval(timer)
+            }
+        }
+
+        var canvas = document.body.children[0]
+        context = canvas.getContext('2d')
+        context.scale(18, 18)
+
+        const width = 36 + 1
+        const height = 21 + 1
+
+        document.addEventListener("keydown", changeDirection);
+
+        let snake = [[18, 10]]     // begins every new game center of the board  (SNAKE SQUARE)
+        let csCLASS = [randNumb(0, width), randNumb(0, height)]  // beginning random location (RED CLASS SQUARE)  
+        let direction = [0, -1]      // begin every game by moving up
+
+        let classArr = [101, 114, 160, 161, 214, 215, 216, 220, 300, 303, 306, 307, 310, 311, 312, 316, 320, 327, 334, 337, 351, 352, 354, 371, 373, 376, 380, 385, 416, 506, 512, 526, 527, 532, 540, 541, 544, 545, 548, 550, 555, 564, 566, 600, 645]
+        let rndCLASSS = classArr.splice(Math.floor(Math.random() * classArr.length), 1);    // beginning red square random class value
+
+        let flag = "up"
+
+        function changeDirection(key) {
+            const keyPressed = key.keyCode;
+            const leftKey = 37;
+            const rightKey = 39;
+            const upKey = 38;
+            const downKey = 40;
+
+            if (keyPressed === leftKey && flag !== "right") {
+                direction = [-1, 0]
+                flag = "left"
+            }
+
+            if (keyPressed === rightKey && flag !== "left") {
+                direction = [1, 0]
+                flag = "right"
+            }
+            if (keyPressed === upKey && flag !== "down") {
+                direction = [0, -1]
+                flag = "up"
+            }
+            if (keyPressed === downKey && flag !== "up") {
+                direction = [0, 1]
+                flag = "down"
+            }
+        }
+
+        function randNumb(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        function continueGame() {
+            let head = [0, 0]
+            head[0] = snake[0][0] + direction[0]
+            head[1] = snake[0][1] + direction[1]
+            snake.unshift(head)
+            if ((head[0] == csCLASS[0]) && (head[1] == csCLASS[1])) {       // if head of snake is at the location of red....
+                csCLASS = [randNumb(0, width), randNumb(0, height)]       // gives the next red square a random location
+                rndCLASSS = classArr.splice(Math.floor(Math.random() * classArr.length), 1);
+            }
+            else {
+                snake.pop()
+            }
+
+            // if snake ran into itself, stop the movement, random snake position and random red square position
+            for (let x = 1; x < snake.length; x++) {
+                if ((snake[0][0] == snake[x][0]) && (snake[0][1] == snake[x][1])) {
+                    snake = [[18, 10]]
+                    csCLASS = [randNumb(0, width), randNumb(0, height)]
+                    classArr = [101, 114, 160, 161, 214, 215, 216, 220, 300, 303, 306, 307, 310, 311, 312, 316, 320, 327, 334, 337, 351, 352, 354, 371, 373, 376, 380, 385, 416, 506, 512, 526, 527, 532, 540, 541, 544, 545, 548, 550, 555, 564, 566, 600, 645]
+                    rndCLASSS = classArr.splice(Math.floor(Math.random() * classArr.length), 1);    // beginning red square random class value
+                    direction = [0, -1]
+                    alert("You Lost! The Snake ran into itself :(")
+                }
+            }
+
+            // if snake touches the border, stop the movement, random snake position and random red square position
+            if ((snake[0][0] < 0) || (snake[0][1] < 0) || (snake[0][0] >= width) || (snake[0][1] >= height)) {
+                snake = [[18, 10]]
+                csCLASS = [randNumb(0, width), randNumb(0, height)]
+                classArr = [101, 114, 160, 161, 214, 215, 216, 220, 300, 303, 306, 307, 310, 311, 312, 316, 320, 327, 334, 337, 351, 352, 354, 371, 373, 376, 380, 385, 416, 506, 512, 526, 527, 532, 540, 541, 544, 545, 548, 550, 555, 564, 566, 600, 645]
+                rndCLASSS = classArr.splice(Math.floor(Math.random() * classArr.length), 1);    // beginning red square random class value
+                direction = [0, -1]
+                alert("You Lost! The Snake touched the border :(")
+            }
+            createColoredSquares()
+        }
+
+        function createColoredSquares() {
+            context.clearRect(0, 0, 100, 100)      // clear the trail of the snake after moving
+
+            context.fillStyle = "#FF8080"
+            context.fillRect(csCLASS[0], csCLASS[1], 1, 1)    // red square is 1x1... location is determined by math.random line above
+
+            context.fillStyle = "black";
+            context.font = '1px Calibri';
+            context.fillText(rndCLASSS, csCLASS[0], (csCLASS[1] + 1), 1, 1);            // class number within the red square
+
+            context.fillStyle = "green"
+            snake.forEach(function ([x, y]) {
+                context.fillRect(x, y, 1, 1)        // green square is 1x1
+            })
+            if (snake.length == 46) {     // if the snake score == 46 (45 classes +1 accounting for starting 1 beginning block square) then they won     
+                context.fillStyle = "lightgoldenrodyellow"
+                context.fillRect(csCLASS[0], csCLASS[1], 1, 1)
+                clearInterval(timer)
+                alert("You Won! The Snake ate all the SBU CS Classes. Refresh to Play Again :)")
+            }
+        }
+        createColoredSquares()
+
+        let timer = setInterval(continueGame, 500)                    // move in current direction every 0.5 seconds
+
+    </script>
+
+</body>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p>Play the Game Using the ↔ ↕ Keys</p>
+<p>Eat All the Stony Brook Computer Science Classes</p>
+<p>Do Not Touch the Border or Yourself</p>
+<h1>HAVE FUN!</h1>
+
+</html>
