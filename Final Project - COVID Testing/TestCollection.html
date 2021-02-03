@@ -1,0 +1,202 @@
+<!-- Nitin Dev, 11229841 -->
+
+<!DOCTYPE HTML>
+<html>
+
+
+<head>
+    <title>Test Collection</title>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+    <style>
+        body {
+            background-color: lightcyan;
+        }
+
+        h1 {
+            border-radius: 15px;
+            background-color: lightgreen;
+            margin: 50px auto;
+            height: 50px;
+            padding-top: 15px;
+            text-align: center;
+            width: 900px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .visualData {
+            border-radius: 15px;
+            background: #436280;
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 20px 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            /* padding: 0; */
+        }
+
+        li {
+            padding: 20px;
+            background: lightgoldenrodyellow;
+            font-size: 20px;
+            color: black;
+            position: relative;
+            border-bottom: 1px solid black;
+            height: 40px;
+        }
+
+        li span {
+            display: block;
+        }
+
+        /* test-barcode */
+        li span:nth-child(2) {
+            font-size: 20px;
+            margin-top: 6px;
+        }
+
+        /* delete */
+        li div {      
+            position: absolute;
+            top: 0;
+            right: 0px;
+            /* width: 40px; */
+            padding: 10px 10px;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+
+        input[type=text],
+        select {
+            width: 25%;
+            padding: 12px 20px;
+            margin: 8px 380px;
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 20px;
+            font-weight: bold;
+            margin: 8px 450px;
+        }
+        a.hyperlink {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            appearance: button;
+            text-decoration: none;
+            color: initial;
+            background-color: #5cd6c2;
+            border: none;
+            font-weight: bold;
+            padding: 15px;
+            text-align: center;
+            display: inline-block;
+            font-size: 15px;
+            margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Test Collection</h1>
+    <a href="LoginPage.html" class="hyperlink">Login Page</a>
+
+    <div class="visualData">
+
+        <form id="add-testCollection-form">
+            <input type="text" id="empID" name="empID" placeholder="EmployeeID" required>
+            <input type="text" id="testBar" name="testBar" placeholder="Test Barcode" required>
+            <button>ADD</button>
+        </form>
+
+        <ul id="testCollection-list"></ul>
+
+    </div>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDvmIbtTuLpr22se2pKMgpp3kkC761bvpM",
+            authDomain: "cse316finalproject-c0ca5.firebaseapp.com",
+            databaseURL: "https://cse316finalproject-c0ca5.firebaseio.com",
+            projectId: "cse316finalproject-c0ca5",
+            storageBucket: "cse316finalproject-c0ca5.appspot.com",
+            messagingSenderId: "469623683716",
+            appId: "1:469623683716:web:a2df59d11c55f5a69320d1"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true }); 
+    </script>
+
+    <script>
+        const testList = document.querySelector('#testCollection-list');
+        const form = document.querySelector('#add-testCollection-form');
+
+        function insertData(doc) {
+            let li = document.createElement('li');
+            let empID = document.createElement('span');
+            let testBar = document.createElement('span');
+            let cross = document.createElement('div');
+
+            li.setAttribute('data-id', doc.id);
+            empID.textContent = doc.data().empID;
+            testBar.textContent = doc.data().testBar;
+            cross.textContent = 'DELETE';
+
+            empID.textContent = "Employee ID: " + empID.textContent;
+            testBar.textContent = "Test Barcode: " + testBar.textContent;
+            li.appendChild(empID);
+            li.appendChild(testBar);
+            li.appendChild(cross);
+
+            testList.appendChild(li);
+
+            // deleting data
+            cross.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let id = e.target.parentElement.getAttribute('data-id');
+                db.collection('TestCollection').doc(id).delete();
+                db.collection('COMPLETEDATA').doc(id).delete();
+            });
+        }
+
+
+        // saving data
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            db.collection('TestCollection').doc(form.testBar.value).set({
+                empID: form.empID.value,
+                testBar: form.testBar.value
+            });
+            db.collection('COMPLETEDATA').doc(form.testBar.value).set({
+                empID: form.empID.value,
+                testBar: form.testBar.value
+            });
+            form.empID.value = '';
+            form.testBar.value = '';
+        });
+
+        // real-time listener
+        db.collection('TestCollection').onSnapshot(snapshot => {
+            let changes = snapshot.docChanges();
+            changes.forEach(change => {
+                console.log(change.doc.data());
+                if (change.type == 'added') {
+                    insertData(change.doc);
+                } else if (change.type == 'removed') {
+                    let li = testList.querySelector('[data-id=' + change.doc.id + ']');
+                    testList.removeChild(li);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
