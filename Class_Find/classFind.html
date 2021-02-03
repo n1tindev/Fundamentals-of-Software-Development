@@ -1,0 +1,1896 @@
+<!-- Nitin Dev, 11229841 -->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>SBU CSE Class Find </title>
+</head>
+
+<style>
+    body {
+        background-color: lightcyan;
+    }
+
+    #searchBox {
+        width: 50%;
+        font-size: 15px;
+        padding: 13px;
+        border: 1px solid;
+    }
+
+    #listofClasses {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin: 7px 0px;
+        /* width: 85%; */
+    }
+
+    #listofClasses li a {
+        border: 1px solid red;
+        background-color: floralwhite;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        display: block
+    }
+
+    #showSCHEDULE li {
+        border: 1px solid red;
+        background-color: floralwhite;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        display: block;
+    }
+
+    .button {
+        background-color: green;
+        border: none;
+        color: white;
+        padding: 10px;
+        margin-left: 1000px;
+        text-align: center;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .scheduleButton {
+        background-color: blueviolet;
+        border: none;
+        color: white;
+        padding: 10px;
+        margin-left: 1000px;
+        text-align: center;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    #showSCHEDULE {
+        display: none;
+    }
+
+    p {
+        text-align: center;
+        color: red;
+    }
+
+    table {
+        /* main table */
+        width: 95%;
+        font-family: 'Poppins', sans-serif;
+        background-color: #FFF8F5;
+        margin: auto;
+    }
+
+    th {
+        /* column and row */
+        font-size: 15pt;
+        background-color: #436280;
+        color: #efefef;
+        text-align: center;
+        line-height: 90px;
+        border-style: solid;
+    }
+
+    td {
+        font-size: 12pt;
+        line-height: 30px;
+    }
+
+    table,
+    th,
+    td {
+        text-align: center;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyD_oRhAmTWPkCXEM5Fha6cug4WEtlSZL9U",
+            authDomain: "nitin-5cbbb.firebaseapp.com",
+            databaseURL: "https://nitin-5cbbb.firebaseio.com",
+            projectId: "nitin-5cbbb",
+            storageBucket: "nitin-5cbbb.appspot.com",
+            messagingSenderId: "24715244258",
+            appId: "1:24715244258:web:e50260a8f8130b806ba4bb",
+            measurementId: "G-LL0DXRLP5L"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+
+    <button class="scheduleButton">View Current Schedule / View SBU CSE Class Find</button>
+    <div id="showSBUCLASSFIND">
+        <p><b>Please Refresh Current Page to Apply Changes of Your Newly Added Classes and Proceed to Click "View
+                Current Schedule"</b></p>
+
+        <h1>SBU CSE Class Find</h1>
+
+        <input type="text" id="searchBox" onkeyup="filtering()" placeholder="Search for Classes">
+
+
+        <ul id="listofClasses">
+            <form id="c1">
+                <li><a><b>CSE 101 Introduction to Computers LEC 1 </b><button class="button">ADD</button><br>
+                        Days: MWF,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 210,
+                        Waitlist Capcity: 70
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c2">
+                <li><a><b>CSE 101 Introduction to Computers Lab L01</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 12:00 PM - 12:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c3">
+                <li><a><b>CSE 101 Introduction to Computers Lab L02</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 1:00 PM - 1:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c4">
+                <li><a><b>CSE 101 Introduction to Computers Lab L03</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 4:00 PM - 4:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c5">
+                <li><a><b>CSE 101 Introduction to Computers Lab L04</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 5:30 PM - 6:23 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c6">
+                <li><a><b>CSE 101 Introduction to Computers Lab L05</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 12:00 PM - 12:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c7">
+                <li><a><b>CSE 101 Introduction to Computers Lab L06</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 4:00 PM - 4:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c8">
+                <li><a><b>CSE 101 Introduction to Computers Lab L07</b><button class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 4:00 PM - 4:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Kevin McDonnell,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c9">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming LEC 1</b><button
+                            class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 44
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c10">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L01</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 7:00 PM - 8:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c11">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L02</b><button
+                            class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 8:30 AM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c12">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L03</b><button
+                            class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c13">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L04</b><button
+                            class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 5:30 PM - 6:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c14">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming LEC 2</b><button
+                            class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Praveen Tripathi,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 33
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c15">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L07</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 8:30 AM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Praveen Tripathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c16">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L08</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Praveen Tripathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c17">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L09</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Praveen Tripathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c18">
+                <li><a><b>CSE 114 Introduction to Object-Oriented Programming Lab L10</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2116,
+                        Instructor: Praveen Tripathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 11
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c19">
+                <li><a><b>CSE 160 Computer Science A: Honors LEC 1</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 5:30 PM - 6:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 50,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c20">
+                <li><a><b>CSE 161 Computer Science A: Honors Labs Lab L01</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 7:00 PM - 8:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Paul Fodor,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c21">
+                <li><a><b>CSE 214 Data Structures LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 8:30 AM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Ahmad Esmaili,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 30
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c22">
+                <li><a><b>CSE 214 Data Structures REC R01</b><button class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Ahmad Esmaili,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c23">
+                <li><a><b>CSE 214 Data Structures REC R02</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Ahmad Esmaili,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c24">
+                <li><a><b>CSE 214 Data Structures REC R03</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 4:00 PM - 4:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Ahmad Esmaili,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c25">
+                <li><a><b>CSE 214 Data Structures REC R04</b><button class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 4:00 PM - 4:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Ahmad Esmaili,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c26">
+                <li><a><b>CSE 214 Data Structures LEC 2</b><button class="button">ADD</button><br>
+                        Days: MWF,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c27">
+                <li><a><b>CSE 214 Data Structures REC R06</b><button class="button">ADD</button><br>
+                        Days: F,
+                        Time: 2:30 PM - 3:23 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 0,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c28">
+                <li><a><b>CSE 214 Data Structures REC R07</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 2:30 PM - 3:23 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c29">
+                <li><a><b>CSE 214 Data Structures REC R08</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 2:30 PM - 3:23 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c30">
+                <li><a><b>CSE 214 Data Structures REC R09</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 3:30 PM - 4:23 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 5
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c31">
+                <li><a><b>CSE 215 Foundations of Computer Science LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Christopher Kane,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 40
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c32">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R01</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Christopher Kane,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c33">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R02</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Christopher Kane,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c34">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R03</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Christopher Kane,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c35">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R04</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Christopher Kane,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c36">
+                <li><a><b>CSE 215 Foundations of Computer Science LEC 2</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 8:30 AM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 40
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c37">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R06</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 1:00 PM - 1:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c38">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R07</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2129,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c39">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R08</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c40">
+                <li><a><b>CSE 215 Foundations of Computer Science REC R09</b><button class="button">ADD</button><br>
+                        Days: F,
+                        Time: 9:00 AM - 9:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2114,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 0,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c41">
+                <li><a><b>CSE 216 Programming Abstractions LEC 1</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 5:30 PM - 6:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 180,
+                        Waitlist Capcity: 25
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c42">
+                <li><a><b>CSE 216 Programming Abstractions REC R01</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c43">
+                <li><a><b>CSE 216 Programming Abstractions REC R02</b><button class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c44">
+                <li><a><b>CSE 216 Programming Abstractions REC R03</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 9:00 AM - 9:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c45">
+                <li><a><b>CSE 216 Programming Abstractions REC R04</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c46">
+                <li><a><b>CSE 216 Programming Abstractions REC R05</b><button class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c47">
+                <li><a><b>CSE 216 Programming Abstractions REC R06</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 12:00 PM - 12:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Ritwik Banerjee,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c48">
+                <li><a><b>CSE 220 System Fundamentals I LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 180,
+                        Waitlist Capcity: 48
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c49">
+                <li><a><b>CSE 220 System Fundamentals I REC R01</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 8
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c50">
+                <li><a><b>CSE 220 System Fundamentals I REC R02</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 10:00 AM - 10:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 8
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c51">
+                <li><a><b>CSE 220 System Fundamentals I REC R03</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 11:00 AM - 11:53 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 8
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c52">
+                <li><a><b>CSE 220 System Fundamentals I REC R05</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 12:00 PM - 12:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 8
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c53">
+                <li><a><b>CSE 220 System Fundamentals I REC R06</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 12:00 PM - 12:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 8
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c54">
+                <li><a><b>CSE 220 System Fundamentals I REC R07</b><button class="button">ADD</button><br>
+                        Days: M,
+                        Time: 2:30 PM - 3:23 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 115,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 8
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c55">
+                <li><a><b>CSE 300 Technical Communications LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: TBA,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE300.01/ISE300.01, Cmbnd Enrl Cap: 35</a>
+                </li>
+            </form>
+
+            <form id="c56">
+                <li><a><b>CSE 300 Technical Communications LEC 2</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: TBA,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE300.02/ISE300.02, Cmbnd Enrl Cap: 35</a>
+                </li>
+            </form>
+
+            <form id="c57">
+                <li><a><b>CSE 300 Technical Communications LEC 3</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: TBA,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE300.03/ISE300.03, Cmbnd Enrl Cap: 35</a>
+                </li>
+            </form>
+
+            <form id="c58">
+                <li><a><b>CSE 300 Technical Communications LEC 4</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: TBA,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE300.04/ISE300.04, Cmbnd Enrl Cap: 35</a>
+                </li>
+            </form>
+
+            <form id="c59">
+                <li><a><b>CSE 300 Technical Communications LEC 5</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: TBA,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE300.05/ISE300.05, Cmbnd Enrl Cap: 35</a>
+                </li>
+            </form>
+
+            <form id="c60">
+                <li><a><b>CSE 300 Technical Communications LEC 6</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 3:50 PM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: TBA,
+                        Enrollment Capacity: 35,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c61">
+                <li><a><b>CSE 303 Introduction to the Theory of Computation LEC 1</b><button
+                            class="button">ADD</button><br>
+                        Days: MWF,
+                        Time: 12:00 PM - 12:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Pramod Ganapathi,
+                        Enrollment Capacity: 250,
+                        Waitlist Capcity: 30
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c62">
+                <li><a><b>CSE 306 Operating Systems LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Eugene Stark,
+                        Enrollment Capacity: 150,
+                        Waitlist Capcity: 20
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c63">
+                <li><a><b>CSE 307 Principles of Programming Languages LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Joydeep Mitra,
+                        Enrollment Capacity: 80,
+                        Waitlist Capcity: 15
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c64">
+                <li><a><b>CSE 310 Computer Networks LEC 1</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Aruna Balasubramanian,
+                        Enrollment Capacity: 200,
+                        Waitlist Capcity: 50
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c65">
+                <li><a><b>CSE 311 Systems Administration LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2120,
+                        Instructor: Ahmad Esmaili,
+                        Enrollment Capacity: 25,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE311.01/ISE311.01, Cmbnd Enrl Cap: 75</a>
+                </li>
+            </form>
+
+            <form id="c66">
+                <li><a><b>CSE 312 Legal, Social, and Ethical Issues in Information Systems LEC 1</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Anthony Scarlatos,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE312.01/ISE312.01, Cmbnd Enrl Cap: 120</a>
+                </li>
+            </form>
+
+            <form id="c67">
+                <li><a><b>CSE 312 Legal, Social, and Ethical Issues in Information Systems LEC 2</b><button
+                            class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 7:00 PM - 8:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Michael Tashbook,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE312.02/ISE312.02, Cmbnd Enrl Cap: 120</a>
+                </li>
+            </form>
+
+            <form id="c68">
+                <li><a><b>CSE 316 Fundamentals of Software Development LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Richard McKenna,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c69">
+                <li><a><b>CSE 320 System Fundamentals II LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Eugene Stark,
+                        Enrollment Capacity: 250,
+                        Waitlist Capcity: 30
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c70">
+                <li><a><b>CSE 327 Fundamentals of Computer Vision LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Dimitrios Samaras,
+                        Enrollment Capacity: 40,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c71">
+                <li><a><b>CSE 334 Introduction to Multimedia Systems LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: COMPUTER SCI,
+                        Room: 2205,
+                        Instructor: Anthony Scarlatos,
+                        Enrollment Capacity: 11,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE334.01/ISE334.01, Cmbnd Enrl Cap: 40</a>
+                </li>
+            </form>
+
+            <form id="c72">
+                <li><a><b>CSE 337 Scripting Languages LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 5:30 PM - 6:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Michael Tashbook,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE337.01/ISE337.01, Cmbnd Enrl Cap: 100</a>
+                </li>
+            </form>
+
+            <form id="c73">
+                <li><a><b>CSE 351 Introduction to Data Science LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Praveen Tripathi,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c74">
+                <li><a><b>CSE 352 Artificial Intelligence LEC 1</b><button class="button">ADD</button><br>
+                        Days: HTBA,
+                        Time: 1:00 AM - 1:00 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 0
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Niranjan Balasubramanian,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c75">
+                <li><a><b>CSE 354 Natural Language Processing LEC 1</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Hansen Schwartz,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 20
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c76">
+                <li><a><b>CSE 371 Logic LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Anita Wasilewska,
+                        Enrollment Capacity: 60,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE/MAT371.01, Cmbnd Enrl Cap: 60</a>
+                </li>
+            </form>
+
+            <form id="c77">
+                <li><a><b>CSE 373 Analysis of Algorithms LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Rezaul Chowdhury,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE373.01/MAT373.01, Cmbnd Enrl Cap: 200</a>
+                </li>
+            </form>
+
+            <form id="c78">
+                <li><a><b>CSE 376 Advanced System Programming in UNIX/C LEC 1</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 8:30 AM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 120,
+                        Instructor: Erez Zadok,
+                        Enrollment Capacity: 80,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c79">
+                <li><a><b>CSE 380 Computer Game Programming LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Richard McKenna,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 30
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c80">
+                <li><a><b>CSE 385 Analysis of Algorithms: Honors LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Michael Bender,
+                        Enrollment Capacity: 60,
+                        Waitlist Capcity: 30
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c81">
+                <li><a><b>CSE 385 Analysis of Algorithms: Honors Recitation REC R01</b><button
+                            class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 2:00 PM - 2:53 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 53
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Michael Bender,
+                        Enrollment Capacity: 60,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c82">
+                <li><a><b>CSE 416 Software Engineering LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 7:00 PM - 8:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Robert Kelly,
+                        Enrollment Capacity: 70,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c83">
+                <li><a><b>CSE 416 Software Engineering LEC 2</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Scott Stoller,
+                        Enrollment Capacity: 70,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c84">
+                <li><a><b>CSE 506 Operating Systems LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 8:30 AM - 9:50 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Dongyoon Lee,
+                        Enrollment Capacity: 150,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c85">
+                <li><a><b>CSE 512 Machine Learning LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Minh Hoai Nguyen,
+                        Enrollment Capacity: 150,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c86">
+                <li><a><b>CSE 526 Principles of Programming Languages LEC 1</b><button class="button">ADD</button><br>
+                        Days: MF,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Yanhong Liu,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c87">
+                <li><a><b>CSE 527 Introduction to Computer Vision LEC 1</b><button class="button">ADD</button><br>
+                        Days: MF,
+                        Time: 7:00 PM - 8:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Haibin Ling,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c88">
+                <li><a><b>CSE 532 Theory of Database Systems LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 5:30 PM - 6:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Michael Kifer,
+                        Enrollment Capacity: 150,
+                        Waitlist Capcity: 34
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c89">
+                <li><a><b>CSE 540 Theory of Computation LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 2:30 PM - 3:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Omkant Pandey,
+                        Enrollment Capacity: 150,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c90">
+                <li><a><b>CSE 541 Logic in Computer Science LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Anita Wasilewska,
+                        Enrollment Capacity: 120,
+                        Waitlist Capcity: 15
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c91">
+                <li><a><b>CSE 544 Prob/Stat for Data Scientists LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 1:00 PM - 2:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Anshul Gandhi,
+                        Enrollment Capacity: 100,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c92">
+                <li><a><b>CSE 545 Big Data Analytics LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Hansen Schwartz,
+                        Enrollment Capacity: 150,
+                        Waitlist Capcity: 28
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c93">
+                <li><a><b>CSE 548 Analysis of Algorithms LEC 1</b><button class="button">ADD</button><br>
+                        Days: MW,
+                        Time: 4:00 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Rezaul Chowdhury,
+                        Enrollment Capacity: 180,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: CSE548.01/AMS542.01, Cmbnd Enrl Cap: 180</a>
+                </li>
+            </form>
+
+            <form id="c94">
+                <li><a><b>CSE 550 Quantum Computing and Applications SEM S01</b><button class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 10:31 AM - 11:30 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 59
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 120,
+                        Instructor: Predrag Krstic,
+                        Enrollment Capacity: 20,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: DCS501.R01/ESE523.R01/CSE550.S, Cmbnd Enrl Cap: 20</a>
+                </li>
+            </form>
+
+            <form id="c95">
+                <li><a><b>CSE 550 Quantum Computing and Applications Recitation LEC 1</b><button
+                            class="button">ADD</button><br>
+                        Days: TU,
+                        Time: 9:30 AM - 10:30 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 60
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 120,
+                        Instructor: Predrag Krstic,
+                        Enrollment Capacity: 20,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: DCS501.01/ESE523.01/CSE550.01, Cmbnd Enrl Cap: 20</a>
+                </li>
+            </form>
+
+            <form id="c96">
+                <li><a><b>CSE 555 Computational Geometry LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 10:00 AM - 11:20 AM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Joseph Mitchell,
+                        Enrollment Capacity: 60,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: AMS545.01/CSE555.01, Cmbnd Enrl Cap: 60</a>
+                </li>
+            </form>
+
+            <form id="c97">
+                <li><a><b>CSE 564 Visualization LEC 1</b><button class="button">ADD</button><br>
+                        Days: TUTH,
+                        Time: 7:00 PM - 8:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Klaus Mueller,
+                        Enrollment Capacity: 250,
+                        Waitlist Capcity: 6
+                        <br> Cmbnd Descr: AMS545.01/CSE555.01, Cmbnd Enrl Cap: 60</a>
+                </li>
+            </form>
+
+            <form id="c98">
+                <li><a><b>CSE 566 Virtual Reality LEC 1</b><button class="button">ADD</button><br>
+                        Days: W,
+                        Time: 2:30 PM - 5:20 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 170
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 220,
+                        Instructor: Arie Kaufman,
+                        Enrollment Capacity: 30,
+                        Waitlist Capcity: 0
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c99">
+                <li><a><b>CSE 600 Seminar in Computer Science SEM S01</b><button class="button">ADD</button><br>
+                        Days: F,
+                        Time: 2:30 PM - 3:30 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 60
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: 120,
+                        Instructor: Samir Das,
+                        Enrollment Capacity: 80,
+                        Waitlist Capcity: 10
+                        <br> Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+
+            <form id="c100">
+                <li><a><b>CSE 645 Seminar in Languages SEM S01</b><button class="button">ADD</button><br>
+                        Days: TH,
+                        Time: 11:30 AM - 12:50 PM,
+                        Start Date: 25-Jan-21, End Date: 19-May-21,
+                        Class Duration: 80
+                        <br>Instruction Mode: In Person,
+                        Building: TBA,
+                        Room: TBA,
+                        Instructor: Paul Fodor; Michael Kifer; C Ramakrishnan; Yanhong Liu,
+                        <br>Enrollment Capacity: 30,
+                        Waitlist Capcity: 0
+                        Cmbnd Descr: N/A, Cmbnd Enrl Cap: N/A</a>
+                </li>
+            </form>
+        </ul>
+
+    </div>
+
+    <div id="showSCHEDULE">
+        <h1>Current Schedule</h1>
+
+        <!-- <form id = "add-cafe-form"></form> -->
+        <ul id="CLASSlist"></ul>
+        <p id="temp"></p>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+        <script>
+            const CLASS_LIST = document.querySelector('#CLASSlist');
+
+            var li
+            var CSE
+            var CRSNUMB
+            var CLASSTYPE
+            var DAYS
+            var STARTTIME
+            var ENDTIME
+            var SECTION
+            var COURSETITLE
+
+            function updateClassList(doc) {
+                li = document.createElement('li');
+                CSE = document.createElement('span');
+                CRSNUMB = document.createElement('span');
+                CLASSTYPE = document.createElement('span');
+                DAYS = document.createElement('span');
+                STARTTIME = document.createElement('span');
+                ENDTIME = document.createElement('span');
+                SECTION = document.createElement('span');
+                COURSETITLE = document.createElement('span');
+
+                li.setAttribute('data-id', doc.id);
+                CSE.textContent = doc.data().CSE
+                CRSNUMB.textContent = doc.data().CRSNUMB
+                CLASSTYPE.textContent = doc.data().CLASSTYPE
+                DAYS.textContent = doc.data().DAYS
+                STARTTIME.textContent = doc.data().STARTTIME
+                ENDTIME.textContent = doc.data().ENDTIME
+                SECTION.textContent = doc.data().SECTION
+                COURSETITLE.textContent = doc.data().COURSETITLE
+
+            }
+            db.collection("classes").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    updateClassList(doc)
+                    tableAdder()
+                });
+            })
+
+
+            function tableAdder() {
+                var table = document.getElementById("myTable");
+
+                var row = table.insertRow(1);
+                table.setAttribute('border', '1');
+                table.setAttribute('width', '100%')
+                var mon = row.insertCell(0);
+                var tues = row.insertCell(1);
+                var wed = row.insertCell(2);
+                var thurs = row.insertCell(3);
+                var fri = row.insertCell(4);
+
+                var dayINAVARIABLE = DAYS.textContent
+                var combinedTime = STARTTIME.textContent + " - " + ENDTIME.textContent
+
+                if (dayINAVARIABLE.includes("M")) {
+                    mon.innerHTML = CSE.textContent + CRSNUMB.textContent + COURSETITLE.textContent +CLASSTYPE.textContent + SECTION.textContent + combinedTime;
+                }
+                if (dayINAVARIABLE.includes("TU")) {
+                    tues.innerHTML = CSE.textContent + CRSNUMB.textContent + COURSETITLE.textContent +CLASSTYPE.textContent + SECTION.textContent + combinedTime;
+                }
+                if (dayINAVARIABLE.includes("W")) {
+                    wed.innerHTML = CSE.textContent + CRSNUMB.textContent + COURSETITLE.textContent +CLASSTYPE.textContent + SECTION.textContent + combinedTime;
+                }
+                if (dayINAVARIABLE.includes("TH")) {
+                    thurs.innerHTML = CSE.textContent + CRSNUMB.textContent + COURSETITLE.textContent +CLASSTYPE.textContent + SECTION.textContent + combinedTime;
+                }
+                if (dayINAVARIABLE.includes("F")) {
+                    fri.innerHTML = CSE.textContent + CRSNUMB.textContent + COURSETITLE.textContent +CLASSTYPE.textContent + SECTION.textContent + combinedTime;
+                }
+
+
+            }
+
+        </script>
+        <table id="myTable">
+            <tr>
+                <th>MONDAY</th>
+                <th>TUESDAY</th>
+                <th>WEDNESDAY</th>
+                <th>THURSDAY</th>
+                <th>FRIDAY</th>
+            </tr>
+
+        </table>
+
+    </div>
+</body>
+
+<script>
+    function filtering() {
+        var searchBoxLower = document.getElementById("searchBox").value.toLowerCase();
+        var lst = document.getElementById("listofClasses").getElementsByTagName("li");
+
+        var x;
+        for (x = 0; x < lst.length; x++) {
+            var anchor = lst[x].getElementsByTagName("a")[0];
+            var classContent = anchor.innerText;
+            if (classContent.toLowerCase().indexOf(searchBoxLower) > -1) {
+                lst[x].style.display = "";
+            } else {
+                lst[x].style.display = "none";
+            }
+        }
+    }
+
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".scheduleButton").click(function () {
+            $("#showSBUCLASSFIND").toggle();
+            $("#showSCHEDULE").toggle();
+        });
+    });
+
+</script>
+
+<script src="dbServer.js"></script>
+
+</html>
